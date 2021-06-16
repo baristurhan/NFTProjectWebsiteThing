@@ -16,22 +16,29 @@ contract Nftest is ERC721, Ownable {
     mapping(uint256 => string) private _tokenURIs;
     mapping(address => uint256) private _balances;
     
-    constructor(string memory _name, string memory _symbol) {
-    	ERC721(_name, _symbol);
+    constructor(string memory _name, string memory _symbol) 
+        ERC721(_name, _symbol) 
+    {
+        
     }
     
-    function getName(uint256 tokenId) external view returns (string memory) {
-    	require(_exists(tokenId), "This is not a token.");
+    fallback() external payable {}
+    receive() external payable {}
+    
+    modifier tokenExists(uint256 tokenId) {
+        require(_exists(tokenId), "This is not a token.");
+        _;
+    }
+    
+    function getName(uint256 tokenId) external view tokenExists(tokenId) returns (string memory) {
     	return _tokenNames[tokenId];
     }
     
-    function getPrice(uint256 tokenId) external view returns (uint256) {
-    	require(_exists(tokenId), "This is not a token.");
+    function getPrice(uint256 tokenId) external view tokenExists(tokenId) returns (uint256) {
     	return _tokenPrices[tokenId];
     }
     
-    function getURI(uint256 tokenId) external view returns (string memory) {
-    	require(_exists(tokenId), "This is not a token.");
+    function getURI(uint256 tokenId) external view tokenExists(tokenId) returns (string memory) {
     	return _tokenURIs[tokenId];
     }
     
@@ -39,23 +46,19 @@ contract Nftest is ERC721, Ownable {
     	return _balances[checkAddress];
     }
     
-    function setTokenPrice(uint256 tokenId, uint256 _tokenPrice) external {
-    	require(_exists(tokenId), "This is not a token.");
+    function setTokenPrice(uint256 tokenId, uint256 _tokenPrice) external tokenExists(tokenId) {
     	address tokenOwner = ownerOf(tokenId);
     	require(tokenOwner == msg.sender, "You do not own this token.");
     	_tokenPrices[tokenId] = _tokenPrice;
     }
     
-    function setTokenMetadata(uint256 tokenId, string memory _URI, uint256 _price, string memory _name) internal virtual {
-    	require(_exists(tokenId), "This is not a token.");
-    	
+    function setTokenMetadata(uint256 tokenId, string memory _URI, uint256 _price, string memory _name) internal virtual tokenExists(tokenId) {
     	_tokenURIs[tokenId] = _URI;
     	_tokenPrices[tokenId] = _price;
     	_tokenNames[tokenId] = _name;
     }
     
-    function buy(uint256 tokenId) external payable{
-    	require(_exists(tokenId), "This is not a token.");
+    function buy(uint256 tokenId) external payable tokenExists(tokenId) {
     	uint256 tokenPrice = _tokenPrices[tokenId];
     	require(msg.value >= tokenPrice, "This is not enough money.");
     	address tokenHolder = ownerOf(tokenId);
