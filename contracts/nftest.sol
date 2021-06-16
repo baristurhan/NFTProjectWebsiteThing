@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract things is ERC721, Ownable {
+contract Nftest is ERC721, Ownable {
     using Strings for uint256;
     using Counters for Counters.counter;
     Counter.counter private tokenIds;
