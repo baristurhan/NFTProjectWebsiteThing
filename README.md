@@ -1,2 +1,2 @@
 # NFT Marketplace Project
-Never use this in production (or anywhere else really.)
+Please no-one use this in production (or anywhere else really.)
