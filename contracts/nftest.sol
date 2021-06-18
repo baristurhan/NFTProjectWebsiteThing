@@ -18,12 +18,12 @@ contract Nftest is ERC721, Ownable {
     
     constructor(string memory _name, string memory _symbol) 
         ERC721(_name, _symbol) 
-    {
-        
-    }
+    {}
     
     fallback() external payable {}
     receive() external payable {}
+    
+    event minted(uint256 mintedCount);
     
     modifier tokenExists(uint256 tokenId) {
         require(_exists(tokenId), "This is not a token.");
@@ -79,6 +79,8 @@ contract Nftest is ERC721, Ownable {
     function mint(address _to, string memory _tokenURI, uint256 _price, string memory _name) external onlyOwner() {
     	_tokenIds.increment();
     	uint256 tokenId = _tokenIds.current();
+    	
+    	emit minted(_tokenIds.current());
     	
     	_safeMint(_to, tokenId);
     	setTokenMetadata(tokenId, _tokenURI, _price, _name);
