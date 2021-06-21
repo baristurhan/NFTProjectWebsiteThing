@@ -39,8 +39,8 @@ def update_html():
     for i in cached:
         data = cached[i]
         mid_str += f"""\n<div class="grid-item">\n<div class="ee c"><p class="c d">{data["name"]}</p></div>\n<div 
-        class="ff c"><img class="row" src="{data["uri"]}" alt="{data["name"]}"></div>\n<div class="ee c"><p class="c">
-        {data["price"]} CETH</p></div>\n</div>\n """
+        class="ff c"><img class="row" src="{data["uri"]}" alt="{data["name"]}"></div>\n<div class="ee c">
+        <button class="c" onclick="buy(3)">BUY<br />3735928559 CETH</button></div>\n</div>\n"""
 
     full_html = begin_str + mid_str + end_str
 
