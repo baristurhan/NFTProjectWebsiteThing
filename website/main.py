@@ -91,31 +91,7 @@ def main():
         time.sleep(polling_interval)
 
 
-cached[0] = {
-    "name": "Not The Bees?!?!?",
-    "uri": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fyt3.ggpht.com%2F-7zFDHK5X45w%2FAAAAAAAAAAI%2FAAAAAAAAAAA%2FQJfHeLTEZwE%2Fs900-c-k-no-mo-rj-c0xffffff%2Fphoto.jpg&f=1&nofb=1",
-    "price": 0xDEADBEEF
-}
-
-cached[1] = {
-    "name": "Funny Dog",
-    "uri": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fyt3.ggpht.com%2F-7zFDHK5X45w%2FAAAAAAAAAAI%2FAAAAAAAAAAA%2FQJfHeLTEZwE%2Fs900-c-k-no-mo-rj-c0xffffff%2Fphoto.jpg&f=1&nofb=1",
-    "price": 0xDEADBEEF
-}
-
-cached[3] = {
-    "name": "Sample Text",
-    "uri": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fyt3.ggpht.com%2F-7zFDHK5X45w%2FAAAAAAAAAAI%2FAAAAAAAAAAA%2FQJfHeLTEZwE%2Fs900-c-k-no-mo-rj-c0xffffff%2Fphoto.jpg&f=1&nofb=1",
-    "price": 0xDEADBEEF
-}
-
-cached[4] = {
-    "name": "78 Billion Line Text File",
-    "uri": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fyt3.ggpht.com%2F-7zFDHK5X45w%2FAAAAAAAAAAI%2FAAAAAAAAAAA%2FQJfHeLTEZwE%2Fs900-c-k-no-mo-rj-c0xffffff%2Fphoto.jpg&f=1&nofb=1",
-    "price": 0xDEADBEEF
-}
-
 update_html()
 
-if __name__ != "__main__":
+if __name__ == "__main__":
     main()
