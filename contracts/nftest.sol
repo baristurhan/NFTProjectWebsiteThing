@@ -73,8 +73,8 @@ contract Nftest is ERC721, Ownable {
     	uint256 money = _balances[msg.sender];
     	if (money > 0) {
     		address payable addressToPay = payable(msg.sender);
-    		addressToPay.transfer(money);
     		_balances[msg.sender] = 0;
+            addressToPay.transfer(money);
     	}
     }
     
