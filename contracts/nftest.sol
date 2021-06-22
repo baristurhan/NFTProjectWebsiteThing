@@ -10,6 +10,7 @@ contract Nftest is ERC721, Ownable {
     using Strings for uint256;
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
+    Counters.Counter private priceUpdates;
     
     mapping(uint256 => string) private _tokenNames;
     mapping(uint256 => uint256) private _tokenPrices;
@@ -48,10 +49,15 @@ contract Nftest is ERC721, Ownable {
         return _tokenIds.current();
     }
     
+    function getPriceUpdates() external view returns (uint256) {
+        return _priceUpdates.current();
+    }
+    
     function setTokenPrice(uint256 tokenId, uint256 _tokenPrice) external tokenExists(tokenId) {
     	address tokenOwner = ownerOf(tokenId);
     	require(tokenOwner == msg.sender, "You do not own this token.");
     	_tokenPrices[tokenId] = _tokenPrice;
+    	_priceUpdates.increment()
     }
     
     function setTokenMetadata(uint256 tokenId, string memory _URI, uint256 _price, string memory _name) internal virtual tokenExists(tokenId) {
