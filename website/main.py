@@ -91,7 +91,5 @@ def main():
         time.sleep(polling_interval)
 
 
-update_html()
-
 if __name__ == "__main__":
     main()
